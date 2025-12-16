@@ -1,76 +1,212 @@
-# ZAP API Integration with AI Analysis
+# 🏀 HoopConnect
 
-## Project Overview
+**Connect. Play. Ball.**
 
-This repository contains a project that integrates the OWASP Zed Attack Proxy (ZAP) API for automated vulnerability scanning into a web application. It also includes an AI analysis layer designed to classify and prioritize vulnerabilities based on their severity and potential impact. The project is designed to help users understand how to use ZAP for vulnerability scanning and how AI can enhance the analysis of the results.
+HoopConnect is a mobile-first social platform that connects basketball players with courts, games, and fellow hoopers in their area. Whether you're looking for a pickup game, organizing a tournament, or just trying to find the best courts near you, HoopConnect makes it easy to get on the court and play.
 
-## Key Components
+## 🎯 Project Vision
 
-### 1. ZAP API Integration
+Our mission is to build the largest community of basketball players, making it easier than ever to find games, connect with players, and keep the love of basketball alive.
 
-The project leverages the ZAP API to perform automated security scans. The ZAP API is used to:
+## ✨ Key Features
 
-- Start and manage vulnerability scans.
-- Retrieve scan results.
-- Handle the interaction between the application and the ZAP tool.
+- **Court Discovery**: Find basketball courts near you with detailed information, ratings, and photos
+- **Game Organization**: Create and join pickup games, organized matches, and tournaments
+- **Player Matching**: Connect with players of similar skill levels and positions
+- **Social Features**: Make friends, chat with players, and build your basketball community
+- **Stats Tracking**: Track your games, performance, and progress over time
+- **Premium Features**: Advanced analytics, tournament management, and more
 
-### 2. AI Analysis Layer
+## 📁 Repository Structure
 
-An AI analysis layer processes the scan results to:
+```
+hoopconnect/
+├── /app                     # React Native mobile client
+├── /backend                 # Optional lightweight API or cloud functions
+├── /docs                    # Product specs, data schema, design system, policies
+│   ├── PRODUCT_ROADMAP.md   # Feature backlog, deprecations, future work
+│   ├── DATA_SCHEMA.md       # Entity definitions, relationships, indexes
+│   ├── DESIGN_SYSTEM.md     # Components, colors, typography, neo-brutalism guide
+│   ├── MONETIZATION.md      # Pricing, tier features, revenue model
+│   ├── SAFETY_POLICY.md     # Community guidelines, moderation, enforcement
+│   └── API_CONTRACTS.md     # API endpoint specifications
+├── /infra                   # Environment setup, BaaS config, scripts
+│   ├── firebase-config.ts   # Firebase project configs (dev/stage/prod)
+│   ├── db-schema.sql        # SQL schema definitions (if using Supabase)
+│   └── seeding/             # Scripts to populate initial court data
+├── .github/
+│   ├── /workflows           # CI/CD pipelines (GitHub Actions)
+│   └── /ISSUE_TEMPLATE      # Issue templates for consistency
+├── .gitignore
+├── README.md                # This file
+└── CONTRIBUTING.md          # Code standards, PR checklist, deployment process
+```
 
-- Classify vulnerabilities based on predefined rules.
-- Prioritize issues according to their severity and potential impact.
-- Provide insights that help users focus on the most critical vulnerabilities.
+## 🚀 Quick Start
 
-### 3. Project Structure
+### Prerequisites
 
-The project is organized as follows:
+- Node.js 18+ and npm
+- React Native development environment
+- Firebase account (or Supabase)
+- Expo CLI (for mobile development)
 
-/my-zap-api-project
-├── /docs
-│ ├── API_Documentation.md
-│ ├── AI_Analysis_Explanation.md
-│ └── Setup_Guide.md
-├── /src
-│ ├── routes.py
-│ └── other_files.py
-└── README.md
+### Installation
 
-- **/docs**: Contains detailed documentation files.
-  - `API_Documentation.md`: Describes the API endpoints and how to use them.
-  - `AI_Analysis_Explanation.md`: Explains the AI analysis layer and how it processes scan results.
-  - `Setup_Guide.md`: Provides a guide for setting up the project environment.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/phalbert2024/zap-api-integration.git
+   cd zap-api-integration
+   # Note: Repository will be renamed to hoopconnect in the future
+   ```
 
-- **/src**: Contains the source code for the backend.
-  - `routes.py`: Implements the Flask routes for interacting with the ZAP API and handling scan requests.
-  - `other_files.py`: Includes additional code files needed for the backend.
+2. **Set up the mobile app**
+   ```bash
+   cd app
+   npm install
+   expo start
+   ```
 
-### 4. How It Works
+3. **Set up the backend** (optional)
+   ```bash
+   cd backend
+   npm install
+   npm run dev
+   ```
 
-- **Initiate Scans:** Users can start vulnerability scans through the API by providing the target URL.
-- **Retrieve Results:** Once a scan is complete, results can be fetched using specific API endpoints.
-- **Analyze Results:** The AI analysis layer processes the scan results, classifies vulnerabilities, and prioritizes them based on severity.
+4. **Configure environment variables**
+   - Copy `.env.example` to `.env`
+   - Fill in your Firebase/Supabase credentials
+   - Update API endpoints as needed
 
-## Documentation
+### Running the App
 
-For more information on how the ZAP API and AI analysis are implemented, refer to the documentation files in the `docs/` folder:
+- **iOS**: Press `i` in the Expo CLI or scan QR code with Camera app
+- **Android**: Press `a` in the Expo CLI or scan QR code with Expo Go app
+- **Web**: Press `w` in the Expo CLI
 
-- [API Documentation](docs/API_Documentation.md)
-- [AI Analysis Explanation](docs/AI_Analysis_Explanation.md)
-- [Setup Guide](docs/Setup_Guide.md)
+## 🌳 Git Branching Strategy
 
-## Understanding the Project
+We follow a structured branching strategy to maintain code quality:
 
-This project serves as an example of how to integrate vulnerability scanning tools with AI analysis to enhance security assessments. By understanding the provided documentation and code, users can learn about:
+- **`main`**: Production code (protected, requires 2 approvals for critical paths)
+- **`develop`**: Staging/integration branch; auto-deploys to stage environments
+- **`feature/*`**: Individual feature branches (one per GitHub issue)
+  - Example: `feature/court-search`, `feature/game-creation`
+- **`hotfix/*`**: Critical bug fixes off main, PR to both main and develop
+  - Example: `hotfix/auth-crash`, `hotfix/payment-error`
 
-- How to interface with the ZAP API for security scanning.
-- How to build an AI layer to interpret and prioritize security vulnerabilities.
-- Best practices for organizing a project that combines these technologies.
+### Branch Protection Rules
 
-## Contributing
+- **main**: Requires 2 approvals, passing CI/CD, no force pushes
+- **develop**: Requires 1 approval, passing CI/CD
+- **feature/***: No restrictions, but must pass CI before merging
 
-If you have suggestions for improvements or find any issues, please feel free to open an issue or submit a pull request. Contributions are welcome!
+## 📖 Documentation
 
-## License
+Comprehensive documentation is available in the `/docs` directory:
+
+- **[Product Roadmap](docs/PRODUCT_ROADMAP.md)**: Feature backlog and future plans
+- **[Data Schema](docs/DATA_SCHEMA.md)**: Database structure and relationships
+- **[Design System](docs/DESIGN_SYSTEM.md)**: UI/UX guidelines and components
+- **[Monetization](docs/MONETIZATION.md)**: Pricing tiers and revenue model
+- **[Safety Policy](docs/SAFETY_POLICY.md)**: Community guidelines and moderation
+- **[API Contracts](docs/API_CONTRACTS.md)**: Backend API specifications
+
+## 🤝 Contributing
+
+We welcome contributions! Please read our [Contributing Guidelines](CONTRIBUTING.md) before submitting pull requests.
+
+### Quick Contribution Checklist
+
+- [ ] Create a feature branch from `develop`
+- [ ] Follow code style guidelines (run linters)
+- [ ] Write tests for new features
+- [ ] Update documentation as needed
+- [ ] Ensure all CI checks pass
+- [ ] Request code review from maintainers
+
+## 🧪 Testing
+
+```bash
+# Run all tests
+npm test
+
+# Run tests with coverage
+npm run test:coverage
+
+# Run linter
+npm run lint
+
+# Run type checking
+npm run type-check
+```
+
+## 🚢 Deployment
+
+Deployments are automated via GitHub Actions:
+
+- **Staging**: Auto-deploy on push to `develop`
+- **Production**: Auto-deploy on push to `main`
+
+Manual deployments:
+```bash
+# Deploy to staging
+npm run deploy:staging
+
+# Deploy to production
+npm run deploy:production
+```
+
+## 🛠️ Tech Stack
+
+- **Mobile**: React Native, Expo, TypeScript
+- **Backend**: Node.js, Express, Firebase Functions (or Supabase Edge Functions)
+- **Database**: Firebase Firestore (or Supabase PostgreSQL)
+- **Authentication**: Firebase Auth (or Supabase Auth)
+- **Storage**: Firebase Storage (or Supabase Storage)
+- **Maps**: Google Maps API / Mapbox
+- **Push Notifications**: Expo Notifications
+- **Analytics**: Firebase Analytics, Mixpanel
+
+## 📊 Project Status
+
+🚧 **Currently in Development** - MVP Phase
+
+- ✅ Repository structure setup
+- ⏳ Mobile app scaffold
+- ⏳ Backend API development
+- ⏳ Database schema implementation
+- ⏳ Authentication flow
+- ⏳ Court discovery feature
+- ⏳ Game creation feature
+
+## 👥 Team
+
+- **Project Lead**: [Your Name]
+- **Mobile Development**: TBD
+- **Backend Development**: TBD
+- **Design**: TBD
+
+## 📝 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## 🔗 Links
+
+- **Website**: [Coming Soon]
+- **Documentation**: [docs/](docs/)
+- **Issue Tracker**: [GitHub Issues](https://github.com/phalbert2024/zap-api-integration/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/phalbert2024/zap-api-integration/discussions)
+
+## 💬 Support
+
+Need help? Have questions?
+
+- 📧 Email: support@hoopconnect.app
+- 💬 Discord: [Coming Soon]
+- 🐦 Twitter: [@hoopconnect](https://twitter.com/hoopconnect)
+
+---
+
+**Made with ❤️ for basketball lovers everywhere**
