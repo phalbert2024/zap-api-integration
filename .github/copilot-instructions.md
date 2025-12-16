@@ -7,7 +7,9 @@ This repository integrates the OWASP Zed Attack Proxy (ZAP) API for automated vu
 ## Repository Structure
 
 ```
-/zap-api-integration
+.
+├── .github/                        # GitHub configuration
+│   └── copilot-instructions.md    # This file
 ├── /docs                           # Documentation and implementation files
 │   ├── /docs                       # User-facing documentation
 │   │   ├── AI_ANALYSIS.md         # AI analysis layer documentation
@@ -78,9 +80,10 @@ The AI analysis functionality is implemented in the `analyze_results()` function
 
 ## ZAP Configuration
 
-The project integrates with ZAP running on:
-- Default URL: `http://127.0.0.1:8080` (Python) or `http://192.168.10.10:8080` (Node.js)
-- API endpoints used:
+The project integrates with ZAP running locally:
+- **Default URL**: `http://127.0.0.1:8080` (localhost)
+- Note: The Node.js client in `zapApi.js` uses `http://192.168.10.10:8080` - this should be updated to match your local ZAP instance IP address
+- **API endpoints used**:
   - `/JSON/ascan/action/scan/` - Start active scan
   - `/JSON/core/view/alerts/` - Retrieve alerts
   - `/JSON/ascan/view/scanProgress/` - Check scan progress
