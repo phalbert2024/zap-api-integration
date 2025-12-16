@@ -1,0 +1,107 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy-backend:
+    name: Deploy Backend to Production
+    runs-on: ubuntu-latest
+    environment: production
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ./backend
+      
+      - name: Run tests
+        run: npm test
+        working-directory: ./backend
+        env:
+          NODE_ENV: test
+      
+      - name: Build
+        run: npm run build
+        working-directory: ./backend
+        env:
+          NODE_ENV: production
+      
+      - name: Deploy to Firebase Functions (Production)
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only functions --project production
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_PROD }}
+      
+      - name: Notify deployment
+        uses: 8398a7/action-slack@v3
+        if: always()
+        with:
+          status: ${{ job.status }}
+          text: 'Backend deployment to production'
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+      
+      - name: Create Sentry release
+        uses: getsentry/action-release@v1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: hoopconnect-backend
+        with:
+          environment: production
+
+  deploy-app:
+    name: Deploy App to Production
+    runs-on: ubuntu-latest
+    environment: production
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ./app
+      
+      - name: Run tests
+        run: npm test
+        working-directory: ./app
+        env:
+          NODE_ENV: test
+      
+      - name: Install Expo CLI
+        run: npm install -g expo-cli eas-cli
+      
+      - name: Build and submit to App Store
+        run: eas build --platform ios --profile production --non-interactive
+        working-directory: ./app
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+      
+      - name: Build and submit to Google Play
+        run: eas build --platform android --profile production --non-interactive
+        working-directory: ./app
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+      
+      - name: Notify deployment
+        uses: 8398a7/action-slack@v3
+        if: always()
+        with:
+          status: ${{ job.status }}
+          text: 'Mobile app deployment to production'
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
