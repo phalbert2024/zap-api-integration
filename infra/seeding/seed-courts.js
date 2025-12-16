@@ -1,8 +1,9 @@
 /**
  * Court Seeding Script for HoopConnect
  * 
- * This script populates the database with initial court data.
- * Run this script after setting up the database schema.
+ * This is a TEMPLATE script that populates the database with initial court data.
+ * You need to implement the database connection logic based on your chosen backend
+ * (Firebase or Supabase) before running this script.
  * 
  * Usage: node seed-courts.js
  */

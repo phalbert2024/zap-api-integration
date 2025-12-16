@@ -57,6 +57,7 @@ hoopconnect/
    ```bash
    git clone https://github.com/phalbert2024/zap-api-integration.git
    cd zap-api-integration
+   # Note: Repository will be renamed to hoopconnect in the future
    ```
 
 2. **Set up the mobile app**

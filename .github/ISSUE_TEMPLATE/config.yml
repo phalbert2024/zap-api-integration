@@ -1,10 +1,10 @@
 blank_issues_enabled: false
 contact_links:
   - name: HoopConnect Community Discussions
-    url: https://github.com/phalbert2024/hoopconnect/discussions
+    url: https://github.com/phalbert2024/zap-api-integration/discussions
     about: Ask questions and discuss ideas with the community
   - name: Security Vulnerability
-    url: https://github.com/phalbert2024/hoopconnect/security/advisories/new
+    url: https://github.com/phalbert2024/zap-api-integration/security/advisories/new
     about: Report a security vulnerability privately
   - name: Documentation
     url: https://docs.hoopconnect.app

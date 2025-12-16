@@ -360,7 +360,7 @@ For questions about this policy:
 
 ---
 
-**Last Updated**: December 2025
+**Last Updated**: December 2024
 **Version**: 1.0
 
 This policy is subject to change. Users will be notified of significant updates.

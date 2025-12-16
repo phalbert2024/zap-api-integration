@@ -23,7 +23,7 @@ interface User {
   updatedAt: Timestamp;
   isActive: boolean;
   isPremium: boolean;
-  stats?: PlayerStats;
+  // stats?: PlayerStats; // To be defined in future iteration
 }
 
 enum SkillLevel {
